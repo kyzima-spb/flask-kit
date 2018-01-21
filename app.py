@@ -11,7 +11,7 @@
     :license: BSD, see LICENSE for more details.
 """
 
-from flask.ext.assets import Bundle
+from flask_assets import Bundle
 from ext import assets
 from helpers import AppFactory
 

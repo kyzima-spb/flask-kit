@@ -16,19 +16,21 @@ import os
 class BaseConfig(object):
     DEBUG = False
     SECRET_KEY = "MY_VERY_SECRET_KEY"
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
+    PONY = {
+        'provider': 'sqlite',
+        'dbname': 'db.sqlite'
+    }
     CSRF_ENABLED = True
     ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
 
     BLUEPRINTS = [
-        'base.base',
+        # 'base.base',
         'info.info',
     ]
 
     EXTENSIONS = [
-        'ext.db',
+        'ext.pony',
         'ext.assets',
-        'ext.login_manager',
         'ext.gravatar',
         'ext.toolbar',
         # If you want Flask-RESTPlus out of the box
@@ -36,9 +38,9 @@ class BaseConfig(object):
     ]
 
     CONTEXT_PROCESSORS = [
-        'base.context_processors.common_context',
-        'base.context_processors.navigation',
-        'base.context_processors.common_forms',
+        # 'base.context_processors.common_context',
+        # 'base.context_processors.navigation',
+        # 'base.context_processors.common_forms',
     ]
 
     CSS_BASE_BUNDLE = [
@@ -50,9 +52,6 @@ class BaseConfig(object):
     ]
 
     JS_BASE_BUNDLE = [
-        'js/libs/jquery-1.11.3.js',
-        'js/libs/underscore-1.8.3.js',
-        'js/libs/backbone-1.2.0.js',
     ]
 
 
@@ -60,8 +59,12 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
     DEBUG_TB_PROFILER_ENABLED = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
+    PONY = {
+        'provider': 'sqlite',
+        'dbname': 'db_dev.sqlite'
+    }
 
 
 class TestingConfig(BaseConfig):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    PONY = {}
