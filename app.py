@@ -12,14 +12,17 @@
 """
 
 from flask_assets import Bundle
-from ext import assets
+
+from ext import assets, pony
 from helpers import AppFactory
 
 
 app = AppFactory().get_app(__name__)
 
-css_base = Bundle(*app.config.get('CSS_BASE_BUNDLE', []), filters='cssmin', output='gen/base.css')
+pony.connect()
+
+css_base = Bundle(*app.config.get('CSS_BASE_BUNDLE', []), filters='cssmin', output='gen/style.css')
 assets.register('css_base', css_base)
 
-js_base = Bundle(*app.config.get('JS_BASE_BUNDLE', []), filters='jsmin', output='gen/base.js')
+js_base = Bundle(*app.config.get('JS_BASE_BUNDLE', []), filters='jsmin', output='gen/all.js')
 assets.register('js_base', js_base)

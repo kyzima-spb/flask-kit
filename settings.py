@@ -18,18 +18,18 @@ class BaseConfig(object):
     SECRET_KEY = "MY_VERY_SECRET_KEY"
     PONY = {
         'provider': 'sqlite',
-        'dbname': 'db.sqlite'
+        'dbname': '/tmp/db.sqlite'
     }
     CSRF_ENABLED = True
     ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
 
     BLUEPRINTS = [
-        # 'base.base',
-        'info.info',
+        'auth.auth'
     ]
 
     EXTENSIONS = [
         'ext.pony',
+        'ext.security',
         'ext.assets',
         'ext.gravatar',
         'ext.toolbar',
@@ -38,9 +38,6 @@ class BaseConfig(object):
     ]
 
     CONTEXT_PROCESSORS = [
-        # 'base.context_processors.common_context',
-        # 'base.context_processors.navigation',
-        # 'base.context_processors.common_forms',
     ]
 
     CSS_BASE_BUNDLE = [
@@ -61,7 +58,7 @@ class DevelopmentConfig(BaseConfig):
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     PONY = {
         'provider': 'sqlite',
-        'dbname': 'db_dev.sqlite'
+        'dbname': '/tmp/db_dev.sqlite'
     }
 
 

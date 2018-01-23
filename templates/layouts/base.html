@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <title>{% block page_title %}{% endblock %} | {% block title %}{% endblock %}</title>
+
+    {% block stylesheets %}
+        {% assets "css_base" %}
+            <link rel="stylesheet" href="{{ ASSET_URL }}">
+        {% endassets %}
+    {% endblock %}
+
+    {% block javascripts_head %}{% endblock %}
+</head>
+
+<body>
+    {% block header %}
+        <header>
+        </header>
+    {% endblock %}
+
+    {% block body %}
+        <div>
+            <h1>
+                {{ self.page_title() }}
+            </h1>
+            <section>
+                {% block page_content %}{% endblock %}
+            </section>
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+        <footer></footer>
+    {% endblock %}
+
+    {% block javascripts %}
+        {% assets "js_base" %}
+            <script src="{{ ASSET_URL }}" type="text/javascript"></script>
+        {% endassets %}
+    {% endblock %}
+
+    {% block javascripts_inline %}{% endblock %}
+</body>
+</html>

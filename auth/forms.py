@@ -11,10 +11,10 @@
 """
 
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
-from wtforms.validators import Email, Required
+from wtforms import StringField, PasswordField
+from wtforms.validators import Email, DataRequired
 
 
 class LoginForm(Form):
-    email = TextField('Login', validators=[Required(), Email()])
-    password = PasswordField('Password', validators=[Required()])
+    email = StringField('Login', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
